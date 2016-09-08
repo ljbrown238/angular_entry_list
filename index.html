@@ -27,7 +27,7 @@
 								ng-model="list_item.name"
 								ng-keyup="catchEnterKeyOnName($event, $index)"
 								custom-autofocus="$index == (list_arr.length-1)"
-								ng-class="(list_arr[$index].name != '' && list_arr[$index].count != null && list_arr[$index].count != '') ? 'green' : 'red'"
+								ng-class="(list_arr[$index].name != '' && list_arr[$index].count != null && list_arr[$index].count != '') ? 'superlightgreen' : 'superlightred'"
 						/>
                     </td>
 					<td>
@@ -36,7 +36,7 @@
 								type="number"
 								ng-model="list_item.count"
 								ng-keyup="catchEnterKeyOnCount($event, $index)"
-								ng-class="(list_arr[$index].name != '' && list_arr[$index].count != null && list_arr[$index].count != '') ? 'green' : 'red'"
+								ng-class="(list_arr[$index].name != '' && list_arr[$index].count != null && list_arr[$index].count != '') ? 'superlightgreen' : 'superlightred'"
 						/>
 					</td>
 					<td>
