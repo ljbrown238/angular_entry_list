@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+	<script src="http://code.jquery.com/jquery-2.2.1.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+	<script src="https://code.angularjs.org/1.5.0/angular-animate.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="ctrl.js"></script>
+</head>
+<body>
+	<div ng-controller="myCtrl">
+        <table>
+			<thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Count</th>
+                </tr>
+			</thead>
+			<tbody>
+                <tr ng-repeat="list_item in list_arr">
+					<td>
+                        <input
+								id="id_name_{{$index}}"
+								type="text"
+								ng-model="list_item.name"
+								ng-keyup="catchEnterKeyOnName($event, $index)"
+								custom-autofocus="$index == (list_arr.length-1)"
+								ng-class="(list_arr[$index].name != '' && list_arr[$index].count != null && list_arr[$index].count != '') ? 'green' : 'red'"
+						/>
+                    </td>
+					<td>
+						<input
+								id="id_count_{{$index}}"
+								type="number"
+								ng-model="list_item.count"
+								ng-keyup="catchEnterKeyOnCount($event, $index)"
+								ng-class="(list_arr[$index].name != '' && list_arr[$index].count != null && list_arr[$index].count != '') ? 'green' : 'red'"
+						/>
+					</td>
+					<td>
+						<input
+								id="id_delete_{{$index}}"
+								type="button"
+								value="Delete"
+								ng-if="list_arr[$index].name != '' && list_arr[$index].count != null && list_arr[$index].count != ''"
+								ng-click="delete($index)"
+						/>
+					</td>
+                </tr>
+			</tbody>
+		</table>
+		<input
+				id="id_insert"
+				ng-disabled="list_arr.length != 0 && (list_arr[list_arr.length-1].name == '' || list_arr[list_arr.length-1].count == null || list_arr[list_arr.length-1].count == '' || isNumeric(list_arr[list_arr.length-1].count))"
+				type="button"
+				ng-click="insert()"
+				value="Insert"
+		/>
+		&nbsp;&nbsp;
+		<input
+				id="id_generate"
+				type="button"
+				ng-click="generate()"
+				value="Generate Final List"
+		/>
+		&nbsp;&nbsp;
+		<input
+				id="id_clear"
+				type="button"
+				ng-click="clear()"
+				value="Clear All Entries"
+		/>
+        <br><br>
+		List array final:<p>{{list_arr_final}}</p>
+	</div>
+
+</body>
+</html>
